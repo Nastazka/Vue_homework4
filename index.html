@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6e6e6;
+            margin: 0;
+            padding: 0;
+        }
+        .product-details {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        Vue.component('ProductDetails', {
+            data() {
+                return {
+                    product: {
+                        name: 'Product Name',
+                        price: 99.99,
+                        available: true
+                    }
+                };
+            },
+            computed: {
+                formattedPrice() {
+                    return '$' + this.product.price.toFixed(2);
+                }
+            },
+            template: `
+                <div class="product-details">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ formattedPrice }}</p>
+                    <p>{{ product.available ? 'Available' : 'Out of stock' }}</p>
+                </div>
+            `
+        });
+
+        new Vue({
+            el: '#app',
+            template: '<ProductDetails />'
+        });
+    </script>
+</body>
+</html>
